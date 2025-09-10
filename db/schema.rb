@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2025_09_10_085046) do
+ActiveRecord::Schema[7.1].define(version: 2025_09_10_104254) do
   create_table "BookingSeats", id: :integer, charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.integer "bookingId"
     t.integer "seatId"
@@ -139,6 +139,14 @@ ActiveRecord::Schema[7.1].define(version: 2025_09_10_085046) do
     t.bigint "blob_id", null: false
     t.string "variation_digest", null: false
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
+  end
+
+  create_table "users", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "address"
   end
 
   add_foreign_key "BookingSeats", "Bookings", column: "bookingId", name: "BookingSeats_ibfk_1"
