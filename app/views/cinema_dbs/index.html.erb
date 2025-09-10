@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Cinema dbs</h1>
+
+<div id="cinema_dbs">
+  <% @cinema_dbs.each do |cinema_db| %>
+    <%= render cinema_db %>
+    <p>
+      <%= link_to "Show this cinema db", cinema_db %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New cinema db", new_cinema_db_path %>

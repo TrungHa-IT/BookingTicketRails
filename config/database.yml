@@ -1,0 +1,22 @@
+
+
+# MySQL. Ensure the mysql2 gem is defined in your Gemfile
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password: Hatrung8888-
+  host: localhost
+
+development:
+  <<: *default
+  database: cinema_db
+
+
+  <<: *default
+  database: cinema_db
+
+production:
+  <<: *default
+  database: cinema_db

@@ -1,0 +1,2 @@
+module CinemaDbsHelper
+end

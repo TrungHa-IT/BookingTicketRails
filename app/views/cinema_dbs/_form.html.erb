@@ -1,0 +1,17 @@
+<%= form_with(model: cinema_db) do |form| %>
+  <% if cinema_db.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(cinema_db.errors.count, "error") %> prohibited this cinema_db from being saved:</h2>
+
+      <ul>
+        <% cinema_db.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

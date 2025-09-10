@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @cinema_db %>
+
+<div>
+  <%= link_to "Edit this cinema db", edit_cinema_db_path(@cinema_db) %> |
+  <%= link_to "Back to cinema dbs", cinema_dbs_path %>
+
+  <%= button_to "Destroy this cinema db", @cinema_db, method: :delete %>
+</div>
