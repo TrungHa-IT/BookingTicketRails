@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       resources :bookings
       resources :payments
       post "/login", to: "auth#login"
+      post '/register', to: 'auth#register'
     end
   end
 
