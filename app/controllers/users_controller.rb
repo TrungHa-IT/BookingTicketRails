@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  before_action :authorize_request          # bắt buộc login
+  before_action :authorize_admin, only: [:index, :destroy]  # chỉ admin được xem danh sách hoặc xóa
   before_action :set_user, only: [:show, :update, :destroy]
 
   # GET /users
@@ -9,6 +11,11 @@ class UsersController < ApplicationController
 
   # GET /users/:id
   def show
+    # Người dùng thường chỉ được xem chính họ
+    if current_user.role != 1 && current_user.id != @user.id
+      return render json: { error: "Bạn không có quyền xem user này" }, status: :forbidden
+    end
+
     render json: @user
   end
 
@@ -24,6 +31,11 @@ class UsersController < ApplicationController
 
   # PUT/PATCH /users/:id
   def update
+    # User chỉ update chính mình, admin thì update được tất cả
+    if current_user.role != 1 && current_user.id != @user.id
+      return render json: { error: "Bạn không có quyền update user này" }, status: :forbidden
+    end
+
     if @user.update(user_params)
       render json: @user
     else

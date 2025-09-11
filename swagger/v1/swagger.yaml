@@ -1,0 +1,88 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/login":
+    post:
+      summary: Đăng nhập để lấy JWT token
+      tags:
+      - Authentication
+      parameters: []
+      responses:
+        '200':
+          description: Đăng nhập thành công
+        '401':
+          description: Sai email hoặc mật khẩu
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: a@gmail.com
+                password:
+                  type: string
+                  example: '123456'
+              required:
+              - email
+              - password
+  "/api/v1/users":
+    get:
+      summary: List users
+      tags:
+      - Users
+      parameters:
+      - name: q
+        in: query
+        schema:
+          type: string
+      - name: role
+        in: query
+        schema:
+          type: integer
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: per_page
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: users returned
+    post:
+      summary: Create user
+      tags:
+      - Users
+      parameters: []
+      responses:
+        '201':
+          description: created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullname:
+                  type: string
+                email:
+                  type: string
+                phone:
+                  type: string
+                password:
+                  type: string
+                role:
+                  type: integer
+              required:
+              - fullname
+              - email
+              - phone
+              - password
+servers:
+- url: http://localhost:3000
