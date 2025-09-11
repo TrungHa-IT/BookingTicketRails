@@ -1,8 +1,14 @@
 class Room < ApplicationRecord
-  belongs_to :cinema, class_name: "Cinema", foreign_key: "cinemaId"
-  has_many :seats, class_name: "Seat", foreign_key: "roomId", dependent: :destroy
-  has_many :shows, class_name: "Show", foreign_key: "roomId", dependent: :destroy
+  belongs_to :cinema
 
-  validates :name, presence: true
-  validates :seatCapacity, numericality: { greater_than: 0 }
+  has_many :seats, dependent: :destroy
+  has_many :shows, dependent: :destroy
+
+  # Validations
+  validates :name, presence: true,
+                   length: { maximum: 100 },
+                   uniqueness: { scope: :cinema_id, message: "trong cùng một rạp phải là duy nhất" }
+
+  validates :seat_capacity, presence: true,
+                            numericality: { only_integer: true, greater_than: 0 }
 end
