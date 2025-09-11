@@ -6,15 +6,15 @@ info:
 paths:
   "/api/v1/login":
     post:
-      summary: Đăng nhập để lấy JWT token
+      summary: Login to get token
       tags:
       - Authentication
       parameters: []
       responses:
         '200':
-          description: Đăng nhập thành công
+          description: Login successfull
         '401':
-          description: Sai email hoặc mật khẩu
+          description: Email or Password incorrect
       requestBody:
         content:
           application/json:
@@ -30,6 +30,44 @@ paths:
               required:
               - email
               - password
+  "/api/v1/register":
+    post:
+      summary: Register and get JWT token
+      tags:
+      - Authentication
+      parameters: []
+      responses:
+        '201':
+          description: Register successfull
+        '422':
+          description: Data incorrect
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                fullname:
+                  type: string
+                  example: Nguyen Van B
+                email:
+                  type: string
+                  example: b@gmail.com
+                phone:
+                  type: string
+                  example: '0901234567'
+                password_hash:
+                  type: string
+                  example: '123456'
+                role:
+                  type: integer
+                  example: 0
+              required:
+              - fullname
+              - email
+              - phone
+              - password_hash
+              - role
   "/api/v1/bookings":
     get:
       summary: List bookings
