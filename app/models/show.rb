@@ -1,11 +1,12 @@
 class Show < ApplicationRecord
-  belongs_to :movie, class_name: "Movie", foreign_key: "movieId"
-  belongs_to :room, class_name: "Room", foreign_key: "roomId"
-  belongs_to :cinema, class_name: "Cinema", foreign_key: "cinemaId"
+  belongs_to :movie
+  belongs_to :room
+  belongs_to :cinema
 
-  has_many :show_time_details, class_name: "ShowTimeDetail", foreign_key: "showId", dependent: :destroy
-  has_many :bookings, class_name: "Booking", foreign_key: "showId", dependent: :destroy
+  has_many :show_time_details, dependent: :destroy
+  has_many :bookings, dependent: :destroy
 
-  validates :ticketPrice, numericality: { greater_than: 0 }
-  validates :showDay, presence: true
+  # Validations
+  validates :ticket_price, presence: true, numericality: { greater_than: 0 }
+  validates :show_day, presence: true
 end

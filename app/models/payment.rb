@@ -1,6 +1,12 @@
 class Payment < ApplicationRecord
-  belongs_to :booking, class_name: "Booking", foreign_key: "bookingId"
+  # Associations
+  belongs_to :booking
 
-  validates :paymentMethod, presence: true
-  validates :status, inclusion: { in: ["Success", "Pending", "Failed"] }
+  # Validations
+  validates :payment_method, presence: true
+  validates :amount, presence: true,
+                     numericality: { greater_than: 0 }
+  validates :payment_date, presence: true
+  validates :status, presence: true,
+                     inclusion: { in: ["Success", "Pending", "Failed"] }
 end

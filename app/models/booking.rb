@@ -1,10 +1,15 @@
 class Booking < ApplicationRecord
-  belongs_to :user, class_name: "User", foreign_key: "userId"
-  belongs_to :show, class_name: "Show", foreign_key: "showId"
+  # Associations
+  belongs_to :user
+  belongs_to :show
 
-  has_one :payment, class_name: "Payment", foreign_key: "bookingId", dependent: :destroy
-  has_many :booking_seats, class_name: "BookingSeat", foreign_key: "bookingId", dependent: :destroy
+  has_one :payment, dependent: :destroy
+  has_many :booking_seats, dependent: :destroy
 
-  validates :bookingTime, presence: true
-  validates :totalAmount, numericality: { greater_than_or_equal_to: 0 }
+  # Validations
+  validates :user_id, presence: true
+  validates :show_id, presence: true
+  validates :booking_time, presence: true
+  validates :total_amount, presence: true,
+                           numericality: { greater_than_or_equal_to: 0 }
 end
