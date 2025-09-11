@@ -1,0 +1,9 @@
+<h1>Xin chào <%= @user.fullname %>,</h1>
+<p>Thanh toán của bạn đã thành công!</p>
+<ul>
+  <li>Mã thanh toán: <%= @payment.id %></li>
+  <li>Số tiền: <%= @payment.amount %></li>
+  <li>Phương thức: <%= @payment.payment_method %></li>
+  <li>Ngày thanh toán: <%= @payment.payment_date %></li>
+</ul>
+<p>Cảm ơn</p>

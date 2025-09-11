@@ -192,6 +192,104 @@ paths:
       responses:
         '204':
           description: movie deleted
+  "/api/v1/payments":
+    get:
+      summary: list payments
+      tags:
+      - Payments
+      parameters:
+      - name: status
+        in: query
+        description: Filter by status
+        schema:
+          type: string
+      - name: q
+        in: query
+        description: Search by user fullname
+        schema:
+          type: string
+      - name: page
+        in: query
+        description: Page number
+        schema:
+          type: integer
+      - name: per_page
+        in: query
+        description: Items per page
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: successful
+    post:
+      summary: create payment
+      tags:
+      - Payments
+      parameters: []
+      responses:
+        '201':
+          description: created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                booking_id:
+                  type: integer
+                payment_method:
+                  type: string
+                amount:
+                  type: number
+                payment_date:
+                  type: string
+                  format: date_time
+                status:
+                  type: string
+              required:
+              - booking_id
+              - payment_method
+              - amount
+              - payment_date
+              - status
+  "/api/v1/payments/{id}":
+    parameters:
+    - name: id
+      in: path
+      description: payment id
+      required: true
+      schema:
+        type: integer
+    get:
+      summary: show payment
+      tags:
+      - Payments
+      responses:
+        '200':
+          description: successful
+    put:
+      summary: update payment
+      tags:
+      - Payments
+      parameters: []
+      responses:
+        '200':
+          description: updated
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                status:
+                  type: string
+    delete:
+      summary: delete payment
+      tags:
+      - Payments
+      responses:
+        '204':
+          description: no content
   "/api/v1/users":
     get:
       summary: List users

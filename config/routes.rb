@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :showtimes
       resources :seats
       resources :bookings
+      resources :payments
       post "/login", to: "auth#login"
     end
   end
