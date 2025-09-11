@@ -17,11 +17,23 @@ RSpec.configure do |config|
         {
           url: 'http://localhost:3000'
         }
+      ],
+      components: {
+        securitySchemes: {
+          bearerAuth: {
+            type: :http,
+            scheme: :bearer,
+            bearerFormat: :JWT
+          }
+        }
+      },
+      security: [
+        {
+          bearerAuth: []
+        }
       ]
     }
   }
 
   config.swagger_format = :yaml
 end
-
-
