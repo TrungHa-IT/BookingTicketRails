@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :movies
       resources :showtimes
       resources :seats
+      resources :bookings
       post "/login", to: "auth#login"
     end
   end

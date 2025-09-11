@@ -30,6 +30,66 @@ paths:
               required:
               - email
               - password
+  "/api/v1/bookings":
+    get:
+      summary: List bookings
+      tags:
+      - Bookings
+      parameters:
+      - name: user_id
+        in: query
+        schema:
+          type: integer
+      - name: show_id
+        in: query
+        schema:
+          type: integer
+      - name: status
+        in: query
+        schema:
+          type: string
+      - name: q
+        in: query
+        schema:
+          type: string
+      - name: page
+        in: query
+        schema:
+          type: integer
+      - name: per_page
+        in: query
+        schema:
+          type: integer
+      responses:
+        '200':
+          description: bookings listed
+    post:
+      summary: Create booking
+      tags:
+      - Bookings
+      parameters: []
+      responses:
+        '201':
+          description: booking created
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user_id:
+                  type: integer
+                show_id:
+                  type: integer
+                total_amount:
+                  type: number
+                status:
+                  type: string
+              required:
+              - user_id
+              - show_id
+              - total_amount
+              - status
   "/api/v1/movies":
     get:
       summary: list movies
