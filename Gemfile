@@ -4,11 +4,16 @@ ruby "3.2.3"
 
 gem 'annotate'
 
+gem "jwt"
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 7.1.3"
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
+
+gem 'kaminari'
+
 
 gem 'schema_to_scaffold', require: false
 
@@ -49,22 +54,12 @@ gem "bootsnap", require: false
 # gem "image_processing", "~> 1.2"
 
 # Gemfile
+
 group :development, :test do
+  gem 'rspec-rails'
   gem 'rswag-api'
   gem 'rswag-ui'
   gem 'rswag-specs'
-end
-
-
-group :development do
-  # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem "web-console"
-
-  # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
-  # gem "rack-mini-profiler"
-
-  # Speed up commands on slow machines / big apps [https://github.com/rails/spring]
-  # gem "spring"
 end
 
 group :test do
